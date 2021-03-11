@@ -17,7 +17,17 @@ namespace learn.Controllers
         // GET: Users
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            if (Session["userName"] != null || Session["adminName"] != null)
+            {
+                if(Session["adminName"] != null)
+                return View(db.Users.ToList());
+                 else
+                  return RedirectToAction("CreatTicket");
+            }
+            else
+                return RedirectToAction("Login");
+
+
         }
 
         // GET: Users/Details/5
@@ -115,6 +125,7 @@ namespace learn.Controllers
             return RedirectToAction("Index");
         }
 
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -123,5 +134,75 @@ namespace learn.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult Login()
+        {
+            Session["userName"] = null;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login([Bind(Include ="Email , Password")]Users users )
+        {
+            var rec = db.Users.Where(x => x.Email == users.Email && x.Password == users.Password).ToList().FirstOrDefault();
+            if (rec != null)
+            {
+                
+                if (rec.Status == 0 )
+                {
+                    Session["adminName"] = rec.Name;
+                    return RedirectToAction("ViewTickets");
+                }
+                else
+                {
+                    Session["userName"] = rec.Name;
+                    return RedirectToAction("Create");
+                }
+
+            }
+            else
+            {
+                ViewBag.error = "Password or Email is Worng !!";
+                return View(users);
+
+            }
+        }
+
+
+        public ActionResult CreatTicket()
+        {
+            if (Session["userName"] != null || Session["adminName"] != null)
+            {
+                if (Session["adminName"] != null)
+                    return View();
+                else
+                    return RedirectToAction("CreatTicket");
+            }
+            else
+                return RedirectToAction("Login");
+
+        }
+
+        // [HttpPost]
+        //   [ValidateAntiForgeryToken]
+        //   public ActionResult CreatTicket()
+        //   {
+        //     return View();
+        // }
+        public ActionResult ViewTickets()
+        {
+            if (Session["userName"] != null || Session["adminName"] != null)
+            {
+                if (Session["adminName"] != null)
+                    return View(db.Tickets.ToList());
+                else
+                    return RedirectToAction("CreatTicket");
+            }
+            else
+                return RedirectToAction("Login");
+            
+        }
+
+
     }
 }

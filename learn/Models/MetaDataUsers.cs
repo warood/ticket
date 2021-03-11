@@ -14,10 +14,13 @@ namespace learn.Models
         //for add new properties
         [Display(Name = "confirm Email")]
         [Required]
+        [Compare("Email" , ErrorMessage ="Email is not match")]
         public string ConfEmail { get; set; }
+
 
         [Display(Name = "confirm Password")]
         [Required]
+        [Compare("Password", ErrorMessage = "Password is not match")]
         public string ConfPassword { get; set; }
     }
 

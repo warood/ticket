@@ -219,6 +219,9 @@
     <Content Include="Views\Users\Details.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Users\Login.cshtml" />
+    <Content Include="Views\Users\CreatTicket.cshtml" />
+    <Content Include="Views\Users\ViewTickets.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
