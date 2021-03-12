@@ -14,13 +14,13 @@ namespace learn.Models
         //for add new properties
         [Display(Name = "confirm Email")]
         [Required]
-        [Compare("Email", ErrorMessage ="Email is not match")]
+        [Compare(nameof(Email), ErrorMessage ="Email is not match")]
         public string ConfEmail { get; set; }
 
 
         [Display(Name = "confirm Password")]
         [Required]
-        [Compare("Password", ErrorMessage = "Password is not match")]
+        [Compare(nameof(Password), ErrorMessage = "Password is not match")]
         public string ConfPassword { get; set; }
     }
 
@@ -32,8 +32,8 @@ namespace learn.Models
         [Required]
         public string Name { get; set; }
 
-       [DataType(DataType.EmailAddress)]
-       [RegularExpression(@"\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b", ErrorMessage ="This is not Email Format")]
+        [DataType(DataType.EmailAddress)]
+        [RegularExpression(@"\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b", ErrorMessage ="This is not Email Format")]
         [Required]
         public string Email { get; set; }
 

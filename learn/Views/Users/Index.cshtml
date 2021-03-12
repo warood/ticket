@@ -43,9 +43,15 @@
                 @Html.DisplayFor(modelItem => item.Users.Name)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.TicketId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.TicketId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.TicketId })
+
+
+                @Html.ActionLink("Approve", "Edit", new { id = item.TicketId }, new { @class = "btn glyphicon glyphicon-thumbs-up" })
+                @Html.ActionLink("Reject", "Edit", new { id = item.TicketId }, new { @class = " glyphicon glyphicon-thumbs-down" })
+
+
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.TicketId }) |
+        @Html.ActionLink("Details", "Details", new { id = item.TicketId }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.TicketId })*@
             </td>
         </tr>
     }

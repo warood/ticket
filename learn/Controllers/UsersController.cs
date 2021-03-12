@@ -56,9 +56,8 @@ namespace learn.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Name,Email,Password ")] Users users)
+        public ActionResult Create([Bind(Include = "Name , Email , Password")] Users users)
         {
-
             users.Status = 0;
             if (ModelState.IsValid)
             {
@@ -71,7 +70,7 @@ namespace learn.Controllers
         }
 
         // GET: Users/Edit/5
-        public ActionResult Edit(int? id)
+       /** public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -83,14 +82,14 @@ namespace learn.Controllers
                 return HttpNotFound();
             }
             return View(users);
-        }
+        }**/
 
         // POST: Users/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserId,Name,Email,Password,Status")] Users users)
+       // [HttpPost]
+        //[ValidateAntiForgeryToken]
+        /**public ActionResult Edit([Bind(Include = "UserId,Name,Email,Password,Status")] Users users)
         {
             if (ModelState.IsValid)
             {
@@ -99,6 +98,17 @@ namespace learn.Controllers
                 return RedirectToAction("Index");
             }
             return View(users);
+        }
+        **/
+        public ActionResult Edit(int id  )
+        {
+            var res = db.Tickets.AsNoTracking().Where(x => x.TicketId == id).ToList().FirstOrDefault(); ;
+            res.Status = "Approve";
+          
+            db.Entry(res).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+
         }
 
         // GET: Users/Delete/5
@@ -206,10 +216,13 @@ namespace learn.Controllers
         {
             if (Session["userName"] != null || Session["adminName"] != null)
             {
-                var id = Session["UserID"];
+                int id = (int)Session["UserID"];
                 //var UserTickets = db.Tickets.Find(id);
+                ViewData["UserTikets"] = db.Tickets.Find(id);
+
                 if (Session["userName"] != null)
-                    return View(db.Tickets.ToList());
+
+                    return View(db.Tickets.Where(x => x.UserId == id).ToList());
                 else
                     return RedirectToAction("Index" , "Home");
             }
