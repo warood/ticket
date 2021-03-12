@@ -20,9 +20,9 @@ namespace learn.Controllers
             if (Session["userName"] != null || Session["adminName"] != null)
             {
                 if(Session["adminName"] != null)
-                return View(db.Users.ToList());
+                return View(db.Tickets.ToList());
                  else
-                  return RedirectToAction("CreatTicket");
+                  return RedirectToAction("Index", "Home");
             }
             else
                 return RedirectToAction("Login");
@@ -56,13 +56,15 @@ namespace learn.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserId,Name,Email,Password,Status")] Users users)
+        public ActionResult Create([Bind(Include = "Name,Email,Password ")] Users users)
         {
+
+            users.Status = 0;
             if (ModelState.IsValid)
             {
                 db.Users.Add(users);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Login");
             }
 
             return View(users);
@@ -150,13 +152,14 @@ namespace learn.Controllers
                 
                 if (rec.Status == 0 )
                 {
-                    Session["adminName"] = rec.Name;
+                    Session["userName"] = rec.Name;
+                    Session["UserID"] = rec.UserId;
                     return RedirectToAction("ViewTickets");
                 }
                 else
                 {
-                    Session["userName"] = rec.Name;
-                    return RedirectToAction("Create");
+                    Session["adminName"] = rec.Name;
+                    return RedirectToAction("Index");
                 }
 
             }
@@ -173,30 +176,42 @@ namespace learn.Controllers
         {
             if (Session["userName"] != null || Session["adminName"] != null)
             {
-                if (Session["adminName"] != null)
+                if (Session["userName"] != null)
                     return View();
                 else
-                    return RedirectToAction("CreatTicket");
+                    return RedirectToAction("Index", "Home");
             }
             else
                 return RedirectToAction("Login");
 
         }
 
-        // [HttpPost]
-        //   [ValidateAntiForgeryToken]
-        //   public ActionResult CreatTicket()
-        //   {
-        //     return View();
-        // }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreatTicket([Bind(Exclude = "Status , UserId")]Tickets tickets)
+        {
+
+            tickets.Status = "sent";
+            var id = Session["UserID"];
+            tickets.UserId =(int) id ;
+            if (ModelState.IsValid)
+            {
+                db.Tickets.Add(tickets);
+                db.SaveChanges();
+                return RedirectToAction("ViewTickets");
+            }
+            return View();
+        }
         public ActionResult ViewTickets()
         {
             if (Session["userName"] != null || Session["adminName"] != null)
             {
-                if (Session["adminName"] != null)
+                var id = Session["UserID"];
+                //var UserTickets = db.Tickets.Find(id);
+                if (Session["userName"] != null)
                     return View(db.Tickets.ToList());
                 else
-                    return RedirectToAction("CreatTicket");
+                    return RedirectToAction("Index" , "Home");
             }
             else
                 return RedirectToAction("Login");

@@ -159,8 +159,8 @@ C:\Users\dell\Desktop\new\MyProject\learn\bin\System.Web.WebPages.Razor.xml
 C:\Users\dell\Desktop\new\MyProject\learn\bin\Newtonsoft.Json.xml
 C:\Users\dell\Desktop\new\MyProject\learn\bin\Antlr3.Runtime.pdb
 C:\Users\dell\Desktop\new\MyProject\learn\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\dell\Desktop\new\MyProject\learn\obj\Debug\learn.csprojAssemblyReference.cache
 C:\Users\dell\Desktop\new\MyProject\learn\obj\Debug\learn.csproj.CoreCompileInputs.cache
 C:\Users\dell\Desktop\new\MyProject\learn\obj\Debug\learn.csproj.CopyComplete
 C:\Users\dell\Desktop\new\MyProject\learn\obj\Debug\learn.dll
 C:\Users\dell\Desktop\new\MyProject\learn\obj\Debug\learn.pdb
+C:\Users\dell\Desktop\new\MyProject\learn\obj\Debug\learn.csprojAssemblyReference.cache
