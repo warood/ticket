@@ -100,11 +100,21 @@ namespace learn.Controllers
             return View(users);
         }
         **/
-        public ActionResult Edit(int id  )
+        public ActionResult Approve(int id  )
         {
             var res = db.Tickets.AsNoTracking().Where(x => x.TicketId == id).ToList().FirstOrDefault(); ;
             res.Status = "Approve";
           
+            db.Entry(res).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+
+        }
+        public ActionResult Reject(int id)
+        {
+            var res = db.Tickets.AsNoTracking().Where(x => x.TicketId == id).ToList().FirstOrDefault(); ;
+            res.Status = "Reject";
+
             db.Entry(res).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -217,7 +227,6 @@ namespace learn.Controllers
             if (Session["userName"] != null || Session["adminName"] != null)
             {
                 int id = (int)Session["UserID"];
-                //var UserTickets = db.Tickets.Find(id);
                 ViewData["UserTikets"] = db.Tickets.Find(id);
 
                 if (Session["userName"] != null)
