@@ -30,21 +30,6 @@ namespace learn.Controllers
 
         }
 
-        // GET: Users/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Users users = db.Users.Find(id);
-            if (users == null)
-            {
-                return HttpNotFound();
-            }
-            return View(users);
-        }
-
         // GET: Users/Create
         public ActionResult Create()
         {
@@ -52,11 +37,9 @@ namespace learn.Controllers
         }
 
         // POST: Users/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Name , Email , Password")] Users users)
+        public ActionResult Create([Bind(Include = "Name , Email , Password , ConfEmail , ConfPassword")] Users users)
         {
             users.Status = 0;
             if (ModelState.IsValid)
@@ -69,37 +52,6 @@ namespace learn.Controllers
             return View(users);
         }
 
-        // GET: Users/Edit/5
-       /** public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Users users = db.Users.Find(id);
-            if (users == null)
-            {
-                return HttpNotFound();
-            }
-            return View(users);
-        }**/
-
-        // POST: Users/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-       // [HttpPost]
-        //[ValidateAntiForgeryToken]
-        /**public ActionResult Edit([Bind(Include = "UserId,Name,Email,Password,Status")] Users users)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(users).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(users);
-        }
-        **/
         public ActionResult Approve(int id  )
         {
             var res = db.Tickets.AsNoTracking().Where(x => x.TicketId == id).ToList().FirstOrDefault(); ;
@@ -120,34 +72,6 @@ namespace learn.Controllers
             return RedirectToAction("Index");
 
         }
-
-        // GET: Users/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Users users = db.Users.Find(id);
-            if (users == null)
-            {
-                return HttpNotFound();
-            }
-            return View(users);
-        }
-
-        // POST: Users/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Users users = db.Users.Find(id);
-            db.Users.Remove(users);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -190,8 +114,6 @@ namespace learn.Controllers
 
             }
         }
-
-
         public ActionResult CreatTicket()
         {
             if (Session["userName"] != null || Session["adminName"] != null)
