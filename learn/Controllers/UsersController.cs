@@ -83,10 +83,15 @@ namespace learn.Controllers
 
         public ActionResult Login()
         {
-            Session["userName"] = null;
             return View();
         }
+        public ActionResult Logout()
+        {
+            Session["userName"] = null;
+            Session["adminName"] = null;
 
+            return RedirectToAction("login");
+        }
         [HttpPost]
         public ActionResult Login([Bind(Include ="Email , Password")]Users users )
         {

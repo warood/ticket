@@ -3,13 +3,11 @@
 @{
     ViewBag.Title = "Index";}
 
-<h2>
-    @Session["adminName"].ToString() Tickets Page
+<h2 style="margin-bottom:4% ">
+    @Session["adminName"].ToString() Manage Tickets Page
 </h2>
 
-<p>
-    @Html.ActionLink("Create New Ticket", "CreatTicket")
-</p>
+
 <table class="table">
     <tr>
         <th>

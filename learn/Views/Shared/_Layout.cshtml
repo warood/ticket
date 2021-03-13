@@ -8,7 +8,7 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -23,17 +23,34 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Login", "Login", "Users")</li>
-                    <li>@Html.ActionLink("Logout", "Login", "Users")</li>
 
+                    @if (Session["adminName"] != null || Session["userName"] != null)
+                    {
+
+                        if (Session["adminName"] != null)
+                        {
+                            <li>@Html.ActionLink("Manage Tickets", "Index", "Users")</li>
+                        }
+                        else if (Session["userName"] != null)
+                        {
+                            <li>@Html.ActionLink("My Tickets", "ViewTickets", "Users")</li>
+                        }
+
+                        <li>@Html.ActionLink("Logout", "Logout", "Users")</li>
+                    }
+                    else
+                    {
+                        <li> @Html.ActionLink("Login", "Login", "Users") </li>
+                    }
                 </ul>
             </div>
         </div>
     </div>
-    <div class="container body-content">
+
+    <div class="container body-content ">
         @RenderBody()
         <hr />
-        <footer>
+        <footer class="navbar-fixed-bottom text-center">
             <p>&copy; @DateTime.Now.Year - Created By Software Engineer: Warood Alshibani</p>
         </footer>
     </div>
