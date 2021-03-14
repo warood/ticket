@@ -1,6 +1,6 @@
 # Ticket Managment Website
 
-Able employes to create ticket and check his tickets status with responsive design
+Able employes to create ticket and check his tickets status with responsive design .
 
 
 ## Technologies used
@@ -8,24 +8,24 @@ Able employes to create ticket and check his tickets status with responsive desi
 * C#
 * Azure
 * cshtml
-* CSS
+* CSS 
 * Bootstrap 
-* LINQ
+* LINQ 
 * SQL Server
 
 
 ## User Stories
 Employee must be able to:
-* Sign up
-* Log in 
-* View his tickets
-* create tickets
+* Sign up .
+* Log in .
+* View his tickets .
+* create tickets .
 
 Admin must be able to:
-* Sign up
-* Log in 
-* Show all tickets information
-* Manage tickets by reject or approve it
+* Sign up .
+* Log in .
+* Show all tickets information .
+* Manage tickets by reject or approve it .
 
 
 
