@@ -1,6 +1,6 @@
 # Ticket Managment Website
 
-Able employes to create ticket and check his tickets status
+Able employes to create ticket and check his tickets status with responsive design
 
 
 ## Technologies used
