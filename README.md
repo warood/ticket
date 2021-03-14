@@ -1,6 +1,6 @@
 # Ticket Managment Website
 
-able employes to create ticket and check his tickets status
+Able employes to create ticket and check his tickets status
 
 
 ## Technologies used
@@ -28,10 +28,9 @@ Admin must be able to:
 
 
 
-
 ## Live link
 http://ticketswibsite.azurewebsites.net/Users
-cd 
+
 
 ## Created by 
 * Warood Alshibani
