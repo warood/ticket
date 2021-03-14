@@ -22,6 +22,8 @@ Employee must be able to:
 * create tickets
 
 Admin must be able to:
+* Sign up
+* Log in 
 * Show all tickets information
 * Manage tickets by reject or approve it
 
