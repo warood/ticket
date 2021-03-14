@@ -39,7 +39,7 @@ namespace learn.Models
 
         [Required]
         [StringLength(15 , MinimumLength = 7 , ErrorMessage ="The password should be between 7-25 characters")]
-        [RegularExpression(@"((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,64})", ErrorMessage = "The Password is not strong ")]
+        [RegularExpression(@"((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,64})", ErrorMessage = "The Password should be contain uppercase , lowercase and special character")]
         public string Password { get; set; }
         public int Status { get; set; }
     }
