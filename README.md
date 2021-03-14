@@ -30,7 +30,7 @@ Admin must be able to:
 
 
 
-## Live link
+## Website link
 http://ticketswibsite.azurewebsites.net/Users
 
 
