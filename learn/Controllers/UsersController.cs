@@ -52,6 +52,7 @@ namespace learn.Controllers
             return View(users);
         }
 
+    
         public ActionResult Approve(int id  )
         {
             var res = db.Tickets.AsNoTracking().Where(x => x.TicketId == id).ToList().FirstOrDefault(); ;
@@ -62,6 +63,7 @@ namespace learn.Controllers
             return RedirectToAction("Index");
 
         }
+       
         public ActionResult Reject(int id)
         {
             var res = db.Tickets.AsNoTracking().Where(x => x.TicketId == id).ToList().FirstOrDefault(); ;
@@ -92,6 +94,7 @@ namespace learn.Controllers
 
             return RedirectToAction("login");
         }
+
         [HttpPost]
         public ActionResult Login([Bind(Include ="Email , Password")]Users users )
         {

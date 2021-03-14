@@ -16,7 +16,7 @@ namespace learn.Models
     public partial class MyDataBaseEntities : DbContext
     {
         public MyDataBaseEntities()
-            : base("name=MyDataBaseEntities")
+            : base("name=MyDataBaseEntities (learn)")
         {
         }
     
